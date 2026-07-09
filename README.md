@@ -22,15 +22,30 @@ Kopi is a high-performance Hugo theme featuring a sophisticated dark-mode aesthe
 
 This theme requires **Hugo Extended** version `0.157.0` or higher.
 
-1.  Add the theme as a git submodule:
-    ```bash
-    git submodule add https://github.com/bect/kopi.git themes/kopi
-    ```
+### 1. For a New Hugo Blog
 
-2.  Add the theme to your `hugo.yaml`:
-    ```yaml
-    theme: 'kopi'
-    ```
+If you are starting from scratch, create a new Hugo site and add the theme:
+
+```bash
+hugo new site your-blog
+cd your-blog
+git init
+git submodule add https://github.com/bect/kopi.git themes/kopi
+echo "theme: 'kopi'" >> hugo.yaml
+```
+
+### 2. For an Existing Hugo Blog
+
+If you already have a Hugo site, you can add this theme as a submodule:
+
+```bash
+git submodule add https://github.com/bect/kopi.git themes/kopi
+```
+
+Then, update your site's `hugo.yaml` to use the theme:
+```yaml
+theme: 'kopi'
+```
 
 ## Configuration
 
