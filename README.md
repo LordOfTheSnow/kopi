@@ -1,30 +1,24 @@
 # Kopi Hugo Theme
 
-Kopi is a high-performance Hugo theme featuring a sophisticated dark-mode aesthetic and a structured 2-column layout. Built for speed and seamless navigation, it utilizes Turbo for instant page transitions.
+Kopi is a Hugo theme with a two-column magazine layout, system-driven dark mode, Turbo-based page navigation, and Mermaid diagram support. It compiles SCSS with Dart Sass, so it requires the **Extended** build of Hugo.
 
 [![Deploy Demo to GitHub Pages](https://github.com/bect/kopi/actions/workflows/deploy.yml/badge.svg)](https://github.com/bect/kopi/actions/workflows/deploy.yml)
 
-**[Live Demo](httpshttps://bect.github.io/kopi/)**
+**[Live Demo](https://bect.github.io/kopi/)**
 
-[![Theme Screenshot](https://raw.githubusercontent.com/bect/kopi/main/images/screenshot.png)](httpshttps://bect.github.io/kopi/)
+[![Theme Screenshot](https://raw.githubusercontent.com/bect/kopi/main/images/screenshot.png)](https://bect.github.io/kopi/)
 
-## Features
+## Requirements
 
-- **Responsive Design**: Looks great on desktops, tablets, and mobile devices.
-- **Dark Mode**: Automatic dark mode based on user's system preference.
-- **Turbo Navigation**: Near-instant page loads for a fluid browsing experience.
-- **Mermaid.js Support**: Create diagrams and flowcharts directly in your markdown.
-- **2-Column Layout**: A clean, magazine-style layout for your content.
-- **Radio Player**: Built-in radio player widget with visualizer and playlist support.
-- **GitHub Pages Deployment**: Includes a ready-to-use GitHub Actions workflow for easy deployment.
+Hugo **Extended** version `0.157.0` or higher.
 
 ## Installation
 
-This theme requires **Hugo Extended** version `0.157.0` or higher.
+Choose one of the three setup routes below.
 
-### 1. For a New Hugo Blog
+### 1. New Hugo blog
 
-If you are starting from scratch, create a new Hugo site and add the theme:
+Start a site from scratch and add the theme as a submodule:
 
 ```bash
 hugo new site your-blog
@@ -32,24 +26,54 @@ cd your-blog
 git init
 git submodule add https://github.com/bect/kopi.git themes/kopi
 echo "theme: 'kopi'" >> hugo.yaml
+hugo server -D
 ```
 
-### 2. For an Existing Hugo Blog
+### 2. Existing Hugo blog
 
-If you already have a Hugo site, you can add this theme as a submodule:
+Add the theme to a site you already have:
 
 ```bash
 git submodule add https://github.com/bect/kopi.git themes/kopi
 ```
 
-Then, update your site's `hugo.yaml` to use the theme:
+Then set the theme in `hugo.yaml`:
+
 ```yaml
 theme: 'kopi'
 ```
 
+### 3. Deploy to GitHub Pages instantly
+
+The theme ships a ready-to-use deployment workflow at
+`exampleSite/.github/workflows/deploy.yml`. Copy it into your repo and push —
+no local theme setup required.
+
+```bash
+# inside your site's repository
+mkdir -p .github/workflows
+cp /path/to/kopi/exampleSite/.github/workflows/deploy.yml .github/workflows/
+git add .github/workflows/deploy.yml
+git push
+```
+
+Then complete the setup in GitHub:
+
+1. Push the site's repository to GitHub (your site lives at the repo root).
+2. In **Settings → Pages**, set *Build and deployment* → *Source* to **GitHub Actions**.
+3. Push a commit to `main` (or run the workflow manually from the **Actions** tab).
+
+The workflow makes these fallbacks so a bare site always builds with Kopi:
+
+- If `themes/kopi` is not present (or not added as a submodule), the workflow
+  clones `https://github.com/bect/kopi.git` into `themes/kopi`.
+- If no `theme` is configured, or `theme` points to any other theme, the
+  workflow forces `theme: 'kopi'` in `hugo.yaml`/`config.yaml`/`config.toml`
+  (or creates `hugo.yaml` if no config file exists).
+
 ## Configuration
 
-You can configure the theme by adding the following to your site's `hugo.yaml`. See the `exampleSite/hugo.yaml` for a full example.
+Add the following to your site's `hugo.yaml`. See `exampleSite/hugo.yaml` for a full example.
 
 ```yaml
 baseURL: 'https://example.com/'
@@ -96,27 +120,20 @@ outputs:
 
 ## Radio Widget
 
-This theme includes an optional radio player widget. Here’s how to configure it.
+The radio widget is controlled by your site's `hugo.yaml`.
 
-### How to Enable or Disable
+- **Enable**: add `RADIO` to the `outputs` list for the home page (shown in the configuration above).
+- **Disable**: remove `RADIO` from the `outputs` list:
 
-The radio widget is controlled by your site's `hugo.yaml` configuration.
+  ```yaml
+  outputs:
+    home:
+      - HTML
+      - RSS
+      - JSON
+  ```
 
-*   **To Enable**, add `RADIO` to the `outputs` list for your home page. The `Configuration` section above shows an example of this.
-
-*   **To Disable**, simply remove `RADIO` from the `outputs` list. The widget will not appear.
-    ```yaml
-    outputs:
-      home:
-        - HTML
-        - RSS
-        - JSON
-        # The "RADIO" entry has been removed
-    ```
-
-### How to Customize the Playlist
-
-You can change the list of radio stations by editing the `/data/radio.yaml` file. Add or remove stations using the following format for each entry:
+**Customize the playlist**: edit `/data/radio.yaml` using this format per station:
 
 ```yaml
 - title: "Station Name"

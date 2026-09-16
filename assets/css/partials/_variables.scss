@@ -10,9 +10,9 @@
     --border: #e4e4e7; /* Zinc-200 */
     
     /* Spacing - Mobile First Defaults */
-    --space-sm: 0.75rem;
-    --space-md: 1rem;
-    --space-lg: 2rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1.5rem;
     
     /* UI Consistency */
     --radius-container: 12px;
@@ -33,8 +33,8 @@ $breakpoint-md: 768px;
 /* Desktop Spacing Overrides */
 @include md {
     :root {
-        --space-md: 1.5rem;
-        --space-lg: 3rem;
+        --space-md: 1.25rem;
+        --space-lg: 2rem;
     }
 }
 
