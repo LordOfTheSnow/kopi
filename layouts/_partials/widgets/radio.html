@@ -1,6 +1,6 @@
 {{ if site.Home.OutputFormats.Get "RADIO" }}
 <!-- Radio Widget -->
-{{ $stations := site.Data.radio }}
+{{ $stations := hugo.Data.radio }}
 {{ $firstStation := index $stations 0 }}
 <div class="widget">
     <div class="widget-radio" id="radioWidget">

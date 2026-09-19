@@ -1,1 +1,1 @@
-{{ site.Data.radio | jsonify }}
+{{ hugo.Data.radio | jsonify }}
