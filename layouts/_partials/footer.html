@@ -10,10 +10,17 @@
             {{ end }}
             <p>&copy; {{ now.Year }} {{ .Site.Title }}</p>
         </div>
-        <div style="display:flex; gap: 1.5rem;">
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
-            <a href="#">RSS</a>
+        <div class="footer-social-links">
+            {{ range .Site.Params.social }}
+            <a href="{{ .url }}" class="btn-icon-action" target="_blank" rel="noopener noreferrer" aria-label="{{ .name | humanize }}">
+                {{ partial "icons/social.html" .name }}
+            </a>
+            {{ end }}
+            {{ with .Site.Home.OutputFormats.Get "rss" }}
+            <a href="{{ .RelPermalink }}" class="btn-icon-action" aria-label="RSS Feed">
+                {{ partial "icons/social.html" "rss" }}
+            </a>
+            {{ end }}
         </div>
     </div>
 </footer>

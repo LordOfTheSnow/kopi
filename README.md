@@ -88,6 +88,12 @@ params:
     bio: "A short bio about yourself."
     link: "#" # Link to your profile or about page
     role: "Your Role"
+    avatar: "/images/avatar.jpg" # Optional. Omit to show the gradient placeholder instead.
+  social: # Optional. Shown as icons in the footer. See layouts/_partials/icons/social.html for supported names.
+    - name: "github"
+      url: "https://github.com/yourname"
+    - name: "mastodon"
+      url: "https://mastodon.social/@yourname"
 
 menus:
   main:

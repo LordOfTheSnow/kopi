@@ -275,6 +275,12 @@
     color: var(--text-muted);
 }
 
+.footer-social-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 @include md {
     .footer-content {
         flex-direction: row;
