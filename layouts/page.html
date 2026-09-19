@@ -13,7 +13,11 @@
                 
                 {{ $author := .Site.Params.author }}
                 <div class="author-block">
+                    {{ with $author.avatar }}
+                    <img class="author-avatar" src="{{ . | absURL }}" alt="{{ $author.name }}" width="48" height="48" loading="lazy">
+                    {{ else }}
                     <div class="author-avatar"></div>
+                    {{ end }}
                     <div class="author-info">
                         <h5>{{ .Params.author | default $author.name }}</h5>
                         <span>{{ $author.role | default "Editor in Chief" }}</span>

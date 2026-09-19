@@ -10,7 +10,7 @@
 @media (min-width: 768px) { .article-title { font-size: 2.5rem; } }
 
 .author-block { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
-.author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
+.author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); object-fit: cover; flex-shrink: 0; }
 .author-info h5 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0; color: var(--text-main); }
 .author-info span { font-size: 0.85rem; color: var(--text-muted); }
 
