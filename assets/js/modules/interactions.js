@@ -115,27 +115,6 @@ export function initInteractions() {
         });
     });
 
-    // Subscribe Buttons
-    document.querySelectorAll('.btn-subscribe').forEach(btn => {
-        btn.addEventListener('click', () => showToast('Subscribed successfully!'));
-    });
-
-    // Cookie Banner
-    const cookieBanner = document.getElementById('cookieBanner');
-    if (cookieBanner && !localStorage.getItem('cookiesAccepted')) {
-        setTimeout(() => cookieBanner.classList.add('show'), 2000);
-    }
-    document.getElementById('btnAcceptCookies')?.addEventListener('click', () => {
-        cookieBanner.classList.remove('show');
-        localStorage.setItem('cookiesAccepted', 'true');
-        showToast('Cookies accepted.');
-    });
-    document.getElementById('btnDeclineCookies')?.addEventListener('click', () => {
-        cookieBanner.classList.remove('show');
-        localStorage.setItem('cookiesAccepted', 'false');
-        showToast('Cookies declined.');
-    });
-
     // Comment Form
     const commentForm = document.querySelector('.comment-form');
     if(commentForm) {
