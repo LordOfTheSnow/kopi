@@ -1,0 +1,2 @@
+{{- $href := .Get 0 -}}
+<a href="{{ $href | safeURL }}" target="_blank" rel="noopener noreferrer">{{ .Inner | markdownify }}</a>

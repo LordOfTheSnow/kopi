@@ -149,6 +149,25 @@ The radio widget is controlled by your site's `hugo.yaml`.
   website_url: "https://station-website.com"
 ```
 
+## Shortcodes
+
+The theme ships the following shortcodes, available in any content file.
+
+### `newtab`
+
+Renders a link that opens in a new browser tab (`target="_blank" rel="noopener noreferrer"`). Use it when a plain Markdown link should not replace the current page, e.g. for a standalone HTML file placed in `static/`.
+
+```
+{{< newtab "nfl-export-2026.html" >}}link text{{< /newtab >}}
+```
+
+| Argument | Description |
+| --- | --- |
+| 1st positional | The link target: relative, absolute-path or full URL. |
+| Inner content | The link text. Inline Markdown such as `*emphasis*` is supported. |
+
+Note: regular Markdown links to external hosts (`https://…`) already open in a new tab automatically, so `newtab` is only needed for local or same-site targets.
+
 ## License
 
 This theme is licensed under the **MIT License**. See the LICENSE file for more details.
