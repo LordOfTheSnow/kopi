@@ -122,14 +122,34 @@
 }
 
 /* Tag Filters (Scrollable) */
+.tag-scroll-wrapper {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 4rem;
+        pointer-events: none;
+        z-index: 1;
+        background: linear-gradient(to right, transparent, var(--bg-body));
+    }
+}
+
 .tag-scroll-container {
     display: flex; align-items: center; gap: 0.75rem;
-    overflow-x: auto; white-space: nowrap; padding-bottom: 1rem;
-    margin-bottom: 2rem; scrollbar-width: none; -ms-overflow-style: none;
+    overflow-x: auto; white-space: nowrap; padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
     border-bottom: 1px solid var(--border); padding-top: 0.5rem;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
 }
-.tag-scroll-container::-webkit-scrollbar { display: none; }
+.tag-scroll-container::-webkit-scrollbar { height: 4px; }
+.tag-scroll-container::-webkit-scrollbar-track { background: transparent; }
+.tag-scroll-container::-webkit-scrollbar-thumb { background-color: var(--border); border-radius: 99px; }
 
 .filter-btn {
     @extend .pill;
