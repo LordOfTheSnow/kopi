@@ -4,10 +4,13 @@ Guidance for Claude Code when working in the **kopi** theme repo itself.
 
 ## Sass / Dart Sass
 
-`layouts/_partials/head.html` compiles `css/main.scss` via `toCSS` with no
-options. With Hugo `0.170.0`+, LibSass is gone and Hugo uses Dart Sass, which
-it finds as the standalone `sass` binary on `PATH` (e.g. the `dart-sass`
-package on Arch/CachyOS). No Node.js/npm (`sass-embedded`) is needed.
+`layouts/_partials/head.html` compiles `css/main.scss` via
+`toCSS (dict "transpiler" "dartsass")`. The transpiler is set explicitly
+because Hugo versions before `0.170.0` default to LibSass, which does not
+support `@use` — keep it explicit so the theme works on every version from
+the documented minimum (`0.157.0`) up. Hugo finds Dart Sass as the standalone
+`sass` binary on `PATH` (e.g. the `dart-sass` package on Arch/CachyOS). No
+Node.js/npm (`sass-embedded`) is needed.
 
 The SCSS uses the module system (`@use`), not the deprecated `@import`:
 
