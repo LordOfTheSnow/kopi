@@ -12,6 +12,8 @@ Kopi is a Hugo theme with a two-column magazine layout, system-driven dark mode,
 
 Hugo **Extended** version `0.157.0` or higher.
 
+> **Note:** This theme has been upgraded for use with Hugo `0.170.0`+ and [Dart Sass](https://sass-lang.com/dart-sass/). Newer Hugo versions no longer ship LibSass, so the standalone `sass` binary must be on your `PATH` (e.g. `sudo pacman -S dart-sass` on Arch/CachyOS, `brew install sass/sass/sass` on macOS, or a release from [github.com/sass/dart-sass](https://github.com/sass/dart-sass/releases)). No Node.js/npm is required. The SCSS has been migrated from the deprecated `@import` rule to `@use`, so builds run without Sass deprecation warnings.
+
 ## Installation
 
 Choose one of the three setup routes below.

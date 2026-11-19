@@ -2,25 +2,18 @@
 
 Guidance for Claude Code when working in the **kopi** theme repo itself.
 
-## Known issues
-
-### LibSass deprecation warning
+## Sass / Dart Sass
 
 `layouts/_partials/head.html` compiles `css/main.scss` via `toCSS` with no
-options, which uses the LibSass transpiler. Hugo v0.153.0 deprecated LibSass
-in favor of Dart Sass and now emits a build warning:
+options. With Hugo `0.170.0`+, LibSass is gone and Hugo uses Dart Sass, which
+it finds as the standalone `sass` binary on `PATH` (e.g. the `dart-sass`
+package on Arch/CachyOS). No Node.js/npm (`sass-embedded`) is needed.
 
-```
-WARN  deprecated: css.Sass: libsass was deprecated in Hugo v0.153.0 and will
-be removed in a future release. Use dartsass instead.
-```
+The SCSS uses the module system (`@use`), not the deprecated `@import`:
 
-Switching to Dart Sass (`toCSS (dict "transpiler" "dartsass")`) requires the
-`sass-embedded` npm package to be present wherever the site is built (see
-Hugo docs: https://gohugo.io/functions/css/sass/#dart-sass) — i.e. it pulls
-in a Node.js/npm dependency for what is otherwise a Node-free static site
-build. The site owner wants to avoid adding a Node.js toolchain just for
-this, so the warning is being left in place for now.
+- `assets/css/main.scss` pulls in each partial with `@use "partials/<name>"`.
+- Partials that need the `md` mixin or `$breakpoint-md` must start with
+  `@use "variables" as *;` (members are not shared implicitly as with
+  `@import`). Currently: `_base`, `_components`, `_widgets`.
 
-Revisit once Hugo removes LibSass support (forcing the move) or if a
-Node-free way to invoke Dart Sass becomes available in Hugo.
+Do not reintroduce `@import`; Dart Sass warns on it and will remove it in 3.0.
